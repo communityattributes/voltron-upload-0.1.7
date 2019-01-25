@@ -1,0 +1,12 @@
+sudo: false
+language: ruby
+rvm:
+  - 2.2.3
+before_install: gem install bundler -v 1.12.5
+addons:
+  postgresql: "9.4"
+services:
+  - postgresql
+before_script:
+  - cp spec/railsapp/config/database.yml.travis spec/railsapp/config/database.yml
+  - psql -c 'create database voltron_upload_test;' -U postgres
